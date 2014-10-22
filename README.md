@@ -4,6 +4,8 @@ ansible-jmeter
 A role for installing jmeter.
 
 [![Build Status](https://api.travis-ci.org/AlbanAndrieu/ansible-jmeter.png?branch=master)](https://travis-ci.org/AlbanAndrieu/ansible-jmeter)
+[![Galaxy](http://img.shields.io/badge/galaxy-ansible-jmeter-blue.svg?style=flat-square)](https://galaxy.ansible.com/list#/roles/1997)
+[![Tag](http://img.shields.io/github/tag/Stouts/ansible-jmeter.svg?style=flat-square)]()
 
 ## Actions
 
