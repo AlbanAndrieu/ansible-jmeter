@@ -1,2 +1,29 @@
 ---
 jmeter_enabled: yes                       # Enable module
+
+jmeter_home_dir: "/usr/share/jmeter"
+jmeter_configuration: "{{ jmeter_home_dir }}/bin/jmeter.properties"
+
+jmeter_dir_tmp: "/tmp" # or override with "{{ tempdir.stdout }} in order to have be sure to download the file"
+
+jmeter_plugins_version: "1.2.0"
+
+jmeter_plugins_standard_archive: "JMeterPlugins-Standard-{{ jmeter_plugins_version }}.zip"
+jmeter_plugins_standard_url: "http://jmeter-plugins.org/downloads/file/{{ jmeter_plugins_standard_archive }}"
+
+jmeter_plugins_extras_archive: "JMeterPlugins-Extras-{{ jmeter_plugins_version }}.zip"
+jmeter_plugins_extras_url: "http://jmeter-plugins.org/downloads/file/{{ jmeter_plugins_extras_archive }}"
+
+jmeter_plugins_extraslibs_archive: "JMeterPlugins-ExtrasLibs-{{ jmeter_plugins_version }}.zip"
+jmeter_plugins_extraslibs_url: "http://jmeter-plugins.org/downloads/file/{{ jmeter_plugins_extraslibs_archive }}"
+
+jmeter_plugins_webdriver_archive: "JMeterPlugins-WebDriver-{{ jmeter_plugins_version }}.zip"
+jmeter_plugins_webdriver_url: "http://jmeter-plugins.org/downloads/file/{{ jmeter_plugins_webdriver_archive }}"
+
+jmeter_plugins_hadoop_archive: "JMeterPlugins-Hadoop-{{ jmeter_plugins_version }}.zip"
+jmeter_plugins_hadoop_url: "http://jmeter-plugins.org/downloads/file/{{ jmeter_plugins_hadoop_archive }}"
+
+jmeter_serveragent_version: "2.2.1"
+
+jmeter_serveragent_archive: "ServerAgent-{{ jmeter_serveragent_version }}.zip"
+jmeter_serveragent_url: "http://jmeter-plugins.org/downloads/file/{{ jmeter_serveragent_archive }}"
