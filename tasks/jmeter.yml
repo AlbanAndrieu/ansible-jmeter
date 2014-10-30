@@ -27,11 +27,12 @@
     url="{{ jmeter_plugins_standard_url }}"
     dest="{{ jmeter_dir_tmp }}/"
   register: jmeter_plugins_standard_download
+  when: jmeter_plugins_standard_enabled
   tags: jmeter_setup
 
 - name: jmeter | Extract archive jmeter plugins standard
   command: chdir={{ jmeter_home_dir }}  /usr/bin/unzip -o -q {{ jmeter_dir_tmp }}/{{ jmeter_plugins_standard_archive }}
-  when: jmeter_plugins_standard_download.changed
+  when: jmeter_plugins_standard_download.changed and jmeter_plugins_standard_enabled
   tags: jmeter_setup
 
 #jmeter plugins extras
@@ -40,11 +41,12 @@
     url="{{ jmeter_plugins_extras_url }}"
     dest="{{ jmeter_dir_tmp }}/"
   register: jmeter_plugins_extras_download
+  when: jmeter_plugins_extras_enabled  
   tags: jmeter_setup
 
 - name: jmeter | Extract archive jmeter plugins extras
   command: chdir={{ jmeter_home_dir }}  /usr/bin/unzip -o -q {{ jmeter_dir_tmp }}/{{ jmeter_plugins_extras_archive }}
-  when: jmeter_plugins_extras_download.changed
+  when: jmeter_plugins_extras_download.changed and jmeter_plugins_extras_enabled
   tags: jmeter_setup
 
 #jmeter plugins extraslibs
@@ -53,11 +55,12 @@
     url="{{ jmeter_plugins_extraslibs_url }}"
     dest="{{ jmeter_dir_tmp }}/"
   register: jmeter_plugins_extraslibs_download
+  when: jmeter_plugins_extraslibs_enabled    
   tags: jmeter_setup
 
 - name: jmeter | Extract archive jmeter plugins extraslibs
   command: chdir={{ jmeter_home_dir }}  /usr/bin/unzip -o -q {{ jmeter_dir_tmp }}/{{ jmeter_plugins_extraslibs_archive }}
-  when: jmeter_plugins_extraslibs_download.changed
+  when: jmeter_plugins_extraslibs_download.changed and jmeter_plugins_extraslibs_enabled
   tags: jmeter_setup
 
 #jmeter plugins webdriver
@@ -66,11 +69,12 @@
     url="{{ jmeter_plugins_webdriver_url }}"
     dest="{{ jmeter_dir_tmp }}/"
   register: jmeter_plugins_webdriver_download
+  when: jmeter_plugins_webdriver_enabled     
   tags: jmeter_setup
 
 - name: jmeter | Extract archive jmeter plugins webdriver
   command: chdir={{ jmeter_home_dir }}  /usr/bin/unzip -o -q {{ jmeter_dir_tmp }}/{{ jmeter_plugins_webdriver_archive }}
-  when: jmeter_plugins_webdriver_download.changed
+  when: jmeter_plugins_webdriver_download.changed and jmeter_plugins_webdriver_enabled
   tags: jmeter_setup
 
 #jmeter plugins hadoop
@@ -79,11 +83,12 @@
     url="{{ jmeter_plugins_hadoop_url }}"
     dest="{{ jmeter_dir_tmp }}/"
   register: jmeter_plugins_hadoop_download
+  when: jmeter_plugins_hadoop_enabled     
   tags: jmeter_setup
 
 - name: jmeter | Extract archive jmeter plugins hadoop
   command: chdir={{ jmeter_home_dir }}  /usr/bin/unzip -o -q {{ jmeter_dir_tmp }}/{{ jmeter_plugins_hadoop_archive }}
-  when: jmeter_plugins_hadoop_download.changed
+  when: jmeter_plugins_hadoop_download.changed and jmeter_plugins_hadoop_enabled
   tags: jmeter_setup
 
 #jmeter serveragent
@@ -92,43 +97,14 @@
     url="{{ jmeter_serveragent_url }}"
     dest="{{ jmeter_dir_tmp }}/"
   register: jmeter_serveragent_download
+  when: jmeter_serveragent_enabled     
   tags: jmeter_setup
 
 - name: jmeter | Extract archive jmeter serveragent
   command: chdir={{ jmeter_home_dir }}  /usr/bin/unzip -o -q {{ jmeter_dir_tmp }}/{{ jmeter_serveragent_archive }}
-  when: jmeter_serveragent_download.changed
+  when: jmeter_serveragent_download.changed and jmeter_serveragent_enabled
   tags: jmeter_setup
   
-#- name: nexus | Download nexus archive
-#  get_url:
-#     url="{{nexus_download_URL}}"
-#     dest="{{nexus_dir_tmp}}/{{nexus_archive}}"
-#  register: nexus_download
-#  tags: nexus_setup
-#
-#- name: nexus | Resolve nexus_dir name from tar
-#  shell:
-#    tar tf {{nexus_dir_tmp}}/{{nexus_archive}}  | head -1
-#  changed_when: False
-#  register: tar_dir_name
-#  tags: nexus_setup
-#
-#- name: nexus | Unarchive nexus
-#  unarchive:
-#     copy=no
-#     src="{{nexus_dir_tmp}}/{{nexus_archive}}"
-#     dest="{{nexus_dir_base}}/"
-#     creates="{{nexus_dir_base}}/{{tar_dir_name.stdout}}/bin"
-#  sudo_user: "{{nexus_user}}"
-#  when: nexus_download.changed
-#  register: nexus_unarchive
-#  tags: nexus_setup
-#
-#- name: nexus | Change archive nexus ownership
-#  file: path={{nexus_dir_base}}/{{tar_dir_name.stdout}} owner={{nexus_user}} group={{nexus_group}} state=directory recurse=yes
-#  when: nexus_download.changed
-#  tags: nexus_setup
-
 - name: jmeter | Configure jmeter
   template: src=jmeter.properties.j2 dest={{jmeter_configuration}}
   register: jmeter_configure
