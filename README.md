@@ -1,6 +1,6 @@
 ## jmeter
 
-[![Travis CI](http://img.shields.io/travis/AlbanAndrieu/ansible-jmeter.svg?style=flat)](http://travis-ci.org/AlbanAndrieu/ansible-jmeter) [![Branch](http://img.shields.io/github/tag/AlbanAndrieu/ansible-jmeter.svg?style=flat-square)](https://github.com/AlbanAndrieu/ansible-jmeter/tree/master) [![Donate](https://img.shields.io/gratipay/AlbanAndrieu.svg?style=flat)](https://www.gratipay.com/AlbanAndrieu)  [![Ansible Galaxy](http://img.shields.io/badge/galaxy-AlbanAndrieu.jmeter-blue.svg?style=flat)](https://galaxy.ansible.com/list#/roles/1997) [![Platforms](http://img.shields.io/badge/platforms-ubuntu-lightgrey.svg?style=flat)](#)
+[![Travis CI](http://img.shields.io/travis/AlbanAndrieu/ansible-jmeter.svg?style=flat)](http://travis-ci.org/AlbanAndrieu/ansible-jmeter) [![Branch](http://img.shields.io/github/tag/AlbanAndrieu/ansible-jmeter.svg?style=flat-square)](https://github.com/AlbanAndrieu/ansible-jmeter/tree/master) [![Donate](https://img.shields.io/gratipay/AlbanAndrieu.svg?style=flat)](https://www.gratipay.com/AlbanAndrieu)  [![Ansible Galaxy](http://img.shields.io/badge/galaxy-alban.andrieu.jmeter-blue.svg?style=flat)](https://galaxy.ansible.com/list#/roles/1997) [![Platforms](http://img.shields.io/badge/platforms-ubuntu-lightgrey.svg?style=flat)](#)
 
 Ensures that jmeter is properly installed (using `apt`) and configured
 
@@ -9,7 +9,7 @@ Ensures that jmeter is properly installed (using `apt`) and configured
 This role requires at least Ansible `v1.6.3`. To install it, run:
 
     ansible-galaxy install alban.andrieu.jmeter
-    
+
 
 
 
