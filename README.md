@@ -1,6 +1,6 @@
 ## jmeter
 
-[![Travis CI](http://img.shields.io/travis/AlbanAndrieu/ansible-jmeter.svg?style=flat)](http://travis-ci.org/AlbanAndrieu/ansible-jmeter) [![Branch](http://img.shields.io/github/tag/AlbanAndrieu/ansible-jmeter.svg?style=flat-square)](https://github.com/AlbanAndrieu/ansible-jmeter/tree/master) [![Donate](https://img.shields.io/gratipay/AlbanAndrieu.svg?style=flat)](https://www.gratipay.com/AlbanAndrieu)  [![Ansible Galaxy](http://img.shields.io/badge/galaxy-AlbanAndrieu.jmeter-blue.svg?style=flat)](https://galaxy.ansible.com/list#/roles/1997) [![Platforms](http://img.shields.io/badge/platforms-ubuntu-lightgrey.svg?style=flat)](#)
+[![Travis CI](http://img.shields.io/travis/alban.andrieu/ansible-jmeter.svg?style=flat)](http://travis-ci.org/alban.andrieu/ansible-jmeter) [![Branch](http://img.shields.io/github/tag/alban.andrieu/ansible-jmeter.svg?style=flat-square)](https://github.com/alban.andrieu/ansible-jmeter/tree/master) [![Donate](https://img.shields.io/gratipay/alban.andrieu.svg?style=flat)](https://www.gratipay.com/alban.andrieu)  [![Ansible Galaxy](http://img.shields.io/badge/galaxy-alban.andrieu.jmeter-blue.svg?style=flat)](https://galaxy.ansible.com/list#/roles/1997) [![Platforms](http://img.shields.io/badge/platforms-ubuntu-lightgrey.svg?style=flat)](#)
 
 Ensures that jmeter is properly installed (using `apt`) and configured
 
@@ -8,7 +8,7 @@ Ensures that jmeter is properly installed (using `apt`) and configured
 
 This role requires at least Ansible `v1.6.3`. To install it, run:
 
-    ansible-galaxy install AlbanAndrieu.jmeter
+    ansible-galaxy install alban.andrieu.jmeter
 
 
 
@@ -63,12 +63,12 @@ Describe how to use in more detail...
 ### Authors and license
 
 `jmeter` role was written by:
-- [alban.andrieu](fr.linkedin.com/in/nabla/) | [e-mail](mailto:alban.andrieu@free.fr) | [Twitter](https://twitter.com/AlbanAndrieu) | [GitHub](https://github.com/AlbanAndrieu)
+- [Alban Andrieu](fr.linkedin.com/in/nabla/) | [e-mail](mailto:alban.andrieu@free.fr) | [Twitter](https://twitter.com/AlbanAndrieu) | [GitHub](https://github.com/AlbanAndrieu)
 - License: [GPLv3](https://tldrlegal.com/license/gnu-general-public-license-v3-%28gpl-3%29)
 
 ### Feedback, bug-reports, requests, ...
 
-Are [welcome](https://github.com/AlbanAndrieu/ansible-jmeter/issues>)!
+Are [welcome](https://github.com/alban.andrieu/ansible-jmeter/issues>)!
 
 ***
 

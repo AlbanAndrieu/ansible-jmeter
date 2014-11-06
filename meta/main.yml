@@ -29,7 +29,7 @@ ansigenome_info:
   travis: True
   
   authors:
-    - name:  'alban.andrieu'
+    - name:  'Alban Andrieu'
       url: 'fr.linkedin.com/in/nabla/'
       email: 'alban.andrieu@free.fr'
       twitter: 'AlbanAndrieu'
