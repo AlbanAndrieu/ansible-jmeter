@@ -6,10 +6,11 @@ Ensures that jmeter is properly installed (using `apt`) and configured
 
 ### Installation
 
-This role requires at least Ansible `v1.6.3`. To install it, run:
+This role requires at least Ansible `v1.6.3`. 
+
+To install it, run:
 
     ansible-galaxy install alban.andrieu.jmeter
-
 
 
 
@@ -69,7 +70,7 @@ Describe how to use in more detail...
 
 ### Feedback, bug-reports, requests, ...
 
-Are [welcome](https://github.com/AlbanAndrieu/ansible-jmeter/issues>)!
+Are [welcome](https://github.com/AlbanAndrieu/ansible-jmeter/issues)!
 
 ***
 
