@@ -25,7 +25,8 @@ galaxy_info:
 
 ansigenome_info:
   galaxy_id: '1997'
-  galaxy_user:  'alban.andrieu'
+  galaxy_user: 'alban.andrieu'
+  galaxy_name: 'jmeter'
 
   travis: True
   
