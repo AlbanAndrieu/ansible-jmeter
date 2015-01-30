@@ -38,7 +38,7 @@ ansigenome_info:
       github: 'AlbanAndrieu'
       
   synopsis: |
-    Ensures that jmeter is properly installed (using `apt`) and configured     
+    Ensures that jmeter is properly installed and configured     
 
   usage: |
     Describe how to use in more detail...
