@@ -1,9 +1,24 @@
 jmeter_enabled: yes                       # Enable module
 
-jmeter_home_dir: "/usr/share/jmeter"
-jmeter_configuration: "{{ jmeter_home_dir }}/bin/jmeter.properties"
+#user: 'albandri' #please override me
+user: "{{ lookup('env','USER') }}"
+jmeter_owner: "{{ user }}"
+jmeter_group: "{{ jmeter_owner }}"
+#home: '~' #please override me
+home: "{{ lookup('env','HOME') }}"
+jmeter_owner_home: "{{ home }}"
+#jmeter_base_dir: "/usr/share/jmeter"
+jmeter_base_dir: "/usr/local/jmeter"
+#jmeter_home_dir: "{{ home }}/.jmeter"
+jmeter_configuration: "{{ jmeter_base_dir }}/{{ jmeter_name }}/bin/jmeter.properties"
 
 jmeter_dir_tmp: "/tmp" # or override with "{{ tempdir.stdout }} in order to have be sure to download the file"
+
+jmeter_version: "2.12"
+
+jmeter_name: "apache-jmeter-{{ jmeter_version }}"
+jmeter_archive: "{{ jmeter_name }}.zip"
+jmeter_url: "http://mir2.ovh.net/ftp.apache.org/dist//jmeter/binaries/{{ jmeter_archive }}"
 
 jmeter_plugins_version: "1.2.0"
 
@@ -29,6 +44,7 @@ jmeter_plugins_hadoop_url: "http://jmeter-plugins.org/downloads/file/{{ jmeter_p
 
 jmeter_serveragent_version: "2.2.1"
 
+jmeter_serveragent_base_dir: "/usr/local/jmeter-agent"
 jmeter_serveragent_enabled: no
 jmeter_serveragent_archive: "ServerAgent-{{ jmeter_serveragent_version }}.zip"
 jmeter_serveragent_url: "http://jmeter-plugins.org/downloads/file/{{ jmeter_serveragent_archive }}"
