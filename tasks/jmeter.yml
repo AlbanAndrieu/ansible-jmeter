@@ -16,9 +16,7 @@
   tags: jmeter_setup
   
 - name: jmeter | Install unzip
-  apt:
-    pkg=unzip
-    state="present"
+  action: "{{ ansible_pkg_mgr}} name=unzip state=present"
   tags: jmeter_setup
   
 #jmeter standard
