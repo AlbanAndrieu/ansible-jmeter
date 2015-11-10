@@ -14,7 +14,7 @@ jmeter_configuration: "{{ jmeter_base_dir }}/{{ jmeter_name }}/bin/jmeter.proper
 
 jmeter_dir_tmp: "/tmp" # or override with "{{ tempdir.stdout }} in order to have be sure to download the file"
 
-jmeter_version: "2.12"
+jmeter_version: "2.13"
 
 jmeter_name: "apache-jmeter-{{ jmeter_version }}"
 jmeter_archive: "{{ jmeter_name }}.zip"
