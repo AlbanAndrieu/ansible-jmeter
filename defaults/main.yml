@@ -20,7 +20,7 @@ jmeter_name: "apache-jmeter-{{ jmeter_version }}"
 jmeter_archive: "{{ jmeter_name }}.zip"
 jmeter_url: "http://mirrors.ircam.fr/pub/apache/jmeter/binaries/{{ jmeter_archive }}"
 
-jmeter_plugins_version: "1.2.0"
+jmeter_plugins_version: "1.3.1"
 
 jmeter_plugins_standard_enabled: yes
 jmeter_plugins_standard_archive: "JMeterPlugins-Standard-{{ jmeter_plugins_version }}.zip"
