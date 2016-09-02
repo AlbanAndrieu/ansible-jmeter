@@ -32,6 +32,11 @@
   tags: jmeter_setup
   become: true
 
+- name: jmeter | Install unzip
+  action: "{{ ansible_pkg_mgr}} name=unzip state=present"
+  tags: jmeter_setup
+  become: true
+
 - name: jmeter | Extract archive jmeter
   unarchive:
     src="{{ jmeter_dir_tmp }}/{{ jmeter_archive }}"
