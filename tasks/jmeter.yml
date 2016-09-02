@@ -212,7 +212,7 @@
 
 - name: jmeter | Cleanup temporary directory
   file: name={{ tempdir.stdout }} state=absent
-      changed_when: false
+  changed_when: false
   tags: jmeter_setup
 
 - debug: msg=" jmeter | Start jmeter agent {{jmeter_serveragent_base_dir}}/startAgent.sh"
