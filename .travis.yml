@@ -12,20 +12,20 @@ env:
     run_opts: "--privileged"
     playbook: test.yml
     JMETER_VERSION: 3.0
-  - distro: ubuntu1604
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    playbook: test.yml
-    JMETER_VERSION: 3.0
+#  - distro: ubuntu1604
+#    init: /lib/systemd/systemd
+#    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+#    playbook: test.yml
+#    JMETER_VERSION: 3.0
   - distro: ubuntu1404
     init: /sbin/init
     run_opts: "--privileged"
     playbook: test.yml
     JMETER_VERSION: 3.0
-  - distro: ubuntu1204
-    init: /sbin/init
-    run_opts: "--privileged"
-    playbook: test.yml
+#  - distro: ubuntu1204
+#    init: /sbin/init
+#    run_opts: "--privileged"
+#    playbook: test.yml
     JMETER_VERSION: 3.0
   - distro: debian8
     init: /lib/systemd/systemd
@@ -49,7 +49,7 @@ script:
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible --version'
 
   # Ansible galaxy.
-  #- 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install -r /etc/ansible/roles/role_under_test/requirements.yml'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install -r /etc/ansible/roles/role_under_test/requirements.yml'
 
   # Ansible syntax check.
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/${playbook} --syntax-check'
@@ -68,11 +68,9 @@ script:
 
   # Ensure jmeter is installed and at the right version.
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm which /usr/local/jmeter/apache-jmeter-$JMETER_VERSION/bin/jmeter'
-  #- 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm test -x /usr/local/jmeter/apache-jmeter-$JMETER_VERSION/bin/jmeter'
 
-  #TODO add java
-  #- 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm /usr/local/jmeter/apache-jmeter-$JMETER_VERSION/bin/jmeter --version'
-  #- 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm /usr/local/jmeter/apache-jmeter-$JMETER_VERSION/bin/jmeter --version | grep -qF "$JMETER_VERSION"'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm /usr/local/jmeter/apache-jmeter-$JMETER_VERSION/bin/jmeter --version'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm /usr/local/jmeter/apache-jmeter-$JMETER_VERSION/bin/jmeter --version | grep -qF "$JMETER_VERSION"'
 
   # Clean up
   - 'sudo docker stop "$(cat ${container_id})"'
