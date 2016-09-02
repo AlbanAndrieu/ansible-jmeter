@@ -17,7 +17,7 @@
 
   tasks:
     - name: Check jmeter
-      command: which jmeter
+      command: which /usr/local/jmeter/apache-jmeter-{{ jmeter_version }}/bin/jmeter
       register: jmeter_path
 
     - debug:
@@ -27,4 +27,5 @@
         msg: "Jmeter Not Found, tests failed."
       when: jmeter_path.stdout != "/usr/local/jmeter/apache-jmeter-{{ jmeter_version }}/bin/jmeter"
 
-    - command -v jmeter || exit 1
+    - name: Display jmeter version
+      command: /usr/local/jmeter/apache-jmeter-{{ jmeter_version }}/bin/jmeter --version
