@@ -46,10 +46,11 @@ script:
   - 'sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} geerlingguy/docker-${distro}-ansible:latest "${init}" > "${container_id}"'
 
   # Ansible version.
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible --version; git --version; ansible-galaxy search nabla --version'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible --version; git --version'
 
   # Ansible galaxy.
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy setup --list'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy search nabla --version'
+  #- 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy setup --list'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install AlbanAndrieu.java'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install -r /etc/ansible/roles/role_under_test/tests/requirements.yml'
 
