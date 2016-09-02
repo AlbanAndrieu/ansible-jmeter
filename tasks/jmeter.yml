@@ -13,7 +13,8 @@
   shell: mktemp -d
   register: tempdir
   tags: jmeter_setup
-  
+  changed_when: False
+
 #jmeter standard
 - name: jmeter | Download jmeter
   get_url:
@@ -21,7 +22,7 @@
     dest="{{ jmeter_dir_tmp }}/"
   register: jmeter_download
   tags: jmeter_setup
-  
+
 - name: jmeter | Create base directory
   file:
     dest="{{jmeter_base_dir}}"
@@ -30,7 +31,7 @@
     group="{{jmeter_group}}"
   sudo : yes
   tags: jmeter_setup
-  
+
 - name: jmeter | Extract archive jmeter
   unarchive:
     src="{{ jmeter_dir_tmp }}/{{ jmeter_archive }}"
@@ -78,7 +79,7 @@
     url="{{ jmeter_plugins_extras_url }}"
     dest="{{ jmeter_dir_tmp }}/"
   register: jmeter_plugins_extras_download
-  when: jmeter_plugins_extras_enabled  
+  when: jmeter_plugins_extras_enabled
   tags: jmeter_setup
 
 - name: jmeter | Extract archive jmeter plugins extras
@@ -99,7 +100,7 @@
     url="{{ jmeter_plugins_extraslibs_url }}"
     dest="{{ jmeter_dir_tmp }}/"
   register: jmeter_plugins_extraslibs_download
-  when: jmeter_plugins_extraslibs_enabled    
+  when: jmeter_plugins_extraslibs_enabled
   tags: jmeter_setup
 
 - name: jmeter | Extract archive jmeter plugins extraslibs
@@ -111,7 +112,7 @@
     group="{{ jmeter_group }}"
   sudo: yes
 #  when: jmeter_plugins_extraslibs_download.changed and jmeter_plugins_extraslibs_enabled
-  when: jmeter_plugins_extraslibs_enabled  
+  when: jmeter_plugins_extraslibs_enabled
   tags: jmeter_setup
 
 #jmeter plugins webdriver
@@ -120,7 +121,7 @@
     url="{{ jmeter_plugins_webdriver_url }}"
     dest="{{ jmeter_dir_tmp }}/"
   register: jmeter_plugins_webdriver_download
-  when: jmeter_plugins_webdriver_enabled     
+  when: jmeter_plugins_webdriver_enabled
   tags: jmeter_setup
 
 - name: jmeter | Extract archive jmeter plugins webdriver
@@ -141,7 +142,7 @@
     url="{{ jmeter_plugins_hadoop_url }}"
     dest="{{ jmeter_dir_tmp }}/"
   register: jmeter_plugins_hadoop_download
-  when: jmeter_plugins_hadoop_enabled     
+  when: jmeter_plugins_hadoop_enabled
   tags: jmeter_setup
 
 - name: jmeter | Extract archive jmeter plugins hadoop
@@ -173,7 +174,7 @@
     url="{{ jmeter_serveragent_url }}"
     dest="{{ jmeter_dir_tmp }}/"
   register: jmeter_serveragent_download
-  when: jmeter_serveragent_enabled     
+  when: jmeter_serveragent_enabled
   tags: jmeter_setup
 
 - name: jmeter | Extract archive jmeter serveragent
@@ -199,7 +200,7 @@
 #    owner="{{ jmeter_owner }}"
 #  sudo: yes
 #  register: jmeter_configure
-  
+
 #- name: jmeter | Ensure Jmeter restarted
 #  service: name=jmeter state=restarted
 #  when: jmeter_configure.changed

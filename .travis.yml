@@ -2,34 +2,48 @@
 sudo: required
 
 env:
-  - distribution: centos
-    version: 6
-    init: /sbin/init
-    run_opts: ""
-  - distribution: centos
-    version: 7
+  - distro: centos7
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-  - distribution: ubuntu # phusion/baseimage
-    version: 14.04
-    init: /sbin/my_init
-    run_opts: ""
-  - distribution: ubuntu
-    version: 12.04
+    playbook: test.yml
+    JMETER_VERSION: 1.8.3.1
+  - distro: centos6
     init: /sbin/init
-    run_opts: ""
+    run_opts: "--privileged"
+    playbook: test.yml
+    JMETER_VERSION: 1.7.1
+  - distro: ubuntu1604
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    playbook: test.yml
+    JMETER_VERSION: 2.7.4
+  - distro: ubuntu1404
+    init: /sbin/init
+    run_opts: "--privileged"
+    playbook: test.yml
+    JMETER_VERSION: 1.9.1
+  - distro: ubuntu1204
+    init: /sbin/init
+    run_opts: "--privileged"
+    playbook: test.yml
+    JMETER_VERSION: 1.7.9.5
+  - distro: debian8
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+    playbook: test.yml
+    JMETER_VERSION: 2.1.4
 
 services:
   - docker
 
 before_install:
-  # Customize container
-  - 'sudo docker build --rm=true --file=tests/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible tests'
+  # Pull container.
+  - 'sudo docker pull geerlingguy/docker-${distro}-ansible:latest'
 
 script:
   - container_id=$(mktemp)
-  # Run container in detached state
-  - 'sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} ${distribution}-${version}:ansible "${init}" > "${container_id}"'
+  # Run container in detached state.
+  - 'sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} geerlingguy/docker-${distro}-ansible:latest "${init}" > "${container_id}"'
 
   # Ansible version.
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible --version'
@@ -38,20 +52,26 @@ script:
   #- 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install -r /etc/ansible/roles/role_under_test/requirements.yml'
 
   # Ansible syntax check.
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml --syntax-check'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/${playbook} --syntax-check'
 
   # Test role.
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/role_under_test/tests/${playbook} -e "jmeter_version=$JMETER_VERSION"'
 
   # Test role idempotence.
+  - idempotence=$(mktemp)
+  - sudo docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/role_under_test/tests/${playbook} -e "jmeter_version=$JMETER_VERSION | tee -a ${idempotence}
   - >
-    sudo docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml
+    tail ${idempotence}
     | grep -q 'changed=0.*failed=0'
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
 
-  # jmeter version.
-  - 'sudo docker exec "$(cat ${container_id})" jmeter --version'
+  # Ensure jmeter is installed and at the right version.
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm which jmeter'
+  #- 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm test -x /usr/bin/jmeter'
+
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm jmeter --version'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm /usr/bin/jmeter --version | grep -qF "$JMETER_VERSION"'
 
   # Clean up
   - 'sudo docker stop "$(cat ${container_id})"'
