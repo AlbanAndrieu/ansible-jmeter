@@ -50,6 +50,7 @@ script:
 
   # Ansible galaxy.
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy setup --list'
+  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install AlbanAndrieu.java'
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install -r /etc/ansible/roles/role_under_test/tests/requirements.yml'
 
   # Ansible syntax check.
