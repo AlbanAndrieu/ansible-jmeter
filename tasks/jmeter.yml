@@ -12,13 +12,6 @@
 - name: jmeter | Create temporary directory
   shell: mktemp -d
   register: tempdir
-  sudo: true
-  tags: jmeter_setup
-  
-- name: jmeter | Install unzip
-  apt:
-    pkg=unzip
-    state="present"
   tags: jmeter_setup
   
 #jmeter standard
@@ -36,12 +29,17 @@
     owner="{{jmeter_owner}}"
     group="{{jmeter_group}}"
   sudo : yes
-  when: jmeter_download.changed
   tags: jmeter_setup
   
 - name: jmeter | Extract archive jmeter
-  command: chdir={{ jmeter_base_dir }} /usr/bin/unzip -o -q {{ jmeter_dir_tmp }}/{{ jmeter_archive }}
-  when: jmeter_download.changed
+  unarchive:
+    src="{{ jmeter_dir_tmp }}/{{ jmeter_archive }}"
+    dest="{{ jmeter_base_dir }}"
+    creates="{{ jmeter_base_dir }}/{{ jmeter_name }}"
+    copy=no
+    owner="{{ jmeter_owner }}"
+    group="{{ jmeter_group }}"
+  sudo: yes
   tags: jmeter_setup
 
 #- name: jmeter | Create home directory
@@ -63,9 +61,15 @@
   tags: jmeter_setup
 
 - name: jmeter | Extract archive jmeter plugins standard
-  command: chdir={{jmeter_base_dir}}/{{ jmeter_name }}  /usr/bin/unzip -o -q {{ jmeter_dir_tmp }}/{{ jmeter_plugins_standard_archive }}
+  unarchive:
+    src="{{ jmeter_dir_tmp }}/{{ jmeter_plugins_standard_archive }}"
+    dest="{{ jmeter_base_dir }}/{{ jmeter_name }}"
+    copy=no
+    owner="{{ jmeter_owner }}"
+    group="{{ jmeter_group }}"
+  sudo: yes
 #  when: jmeter_plugins_standard_download.changed and jmeter_plugins_standard_enabled
-  when: jmeter_plugins_standard_enabled  
+  when: jmeter_plugins_standard_enabled
   tags: jmeter_setup
 
 #jmeter plugins extras
@@ -78,9 +82,15 @@
   tags: jmeter_setup
 
 - name: jmeter | Extract archive jmeter plugins extras
-  command: chdir={{jmeter_base_dir}}/{{ jmeter_name }}  /usr/bin/unzip -o -q {{ jmeter_dir_tmp }}/{{ jmeter_plugins_extras_archive }}
+  unarchive:
+    src="{{ jmeter_dir_tmp }}/{{ jmeter_plugins_extras_archive }}"
+    dest="{{ jmeter_base_dir }}/{{ jmeter_name }}"
+    copy=no
+    owner="{{ jmeter_owner }}"
+    group="{{ jmeter_group }}"
+  sudo: yes
 #  when: jmeter_plugins_extras_download.changed and jmeter_plugins_extras_enabled
-  when: jmeter_plugins_extras_enabled  
+  when: jmeter_plugins_extras_enabled
   tags: jmeter_setup
 
 #jmeter plugins extraslibs
@@ -93,7 +103,13 @@
   tags: jmeter_setup
 
 - name: jmeter | Extract archive jmeter plugins extraslibs
-  command: chdir={{jmeter_base_dir}}/{{ jmeter_name }}  /usr/bin/unzip -o -q {{ jmeter_dir_tmp }}/{{ jmeter_plugins_extraslibs_archive }}
+  unarchive:
+    src="{{ jmeter_dir_tmp }}/{{ jmeter_plugins_extraslibs_archive }}"
+    dest="{{ jmeter_base_dir }}/{{ jmeter_name }}"
+    copy=no
+    owner="{{ jmeter_owner }}"
+    group="{{ jmeter_group }}"
+  sudo: yes
 #  when: jmeter_plugins_extraslibs_download.changed and jmeter_plugins_extraslibs_enabled
   when: jmeter_plugins_extraslibs_enabled  
   tags: jmeter_setup
@@ -108,7 +124,13 @@
   tags: jmeter_setup
 
 - name: jmeter | Extract archive jmeter plugins webdriver
-  command: chdir={{jmeter_base_dir}}/{{ jmeter_name }}  /usr/bin/unzip -o -q {{ jmeter_dir_tmp }}/{{ jmeter_plugins_webdriver_archive }}
+  unarchive:
+    src="{{ jmeter_dir_tmp }}/{{ jmeter_plugins_webdriver_archive }}"
+    dest="{{ jmeter_base_dir }}/{{ jmeter_name }}"
+    copy=no
+    owner="{{ jmeter_owner }}"
+    group="{{ jmeter_group }}"
+  sudo: yes
 #  when: jmeter_plugins_webdriver_download.changed and jmeter_plugins_webdriver_enabled
   when: jmeter_plugins_webdriver_enabled
   tags: jmeter_setup
@@ -123,7 +145,13 @@
   tags: jmeter_setup
 
 - name: jmeter | Extract archive jmeter plugins hadoop
-  command: chdir={{jmeter_base_dir}}/{{ jmeter_name }}  /usr/bin/unzip -o -q {{ jmeter_dir_tmp }}/{{ jmeter_plugins_hadoop_archive }}
+  unarchive:
+    src="{{ jmeter_dir_tmp }}/{{ jmeter_plugins_hadoop_archive }}"
+    dest="{{ jmeter_base_dir }}/{{ jmeter_name }}"
+    copy=no
+    owner="{{ jmeter_owner }}"
+    group="{{ jmeter_group }}"
+  sudo: yes
 #  when: jmeter_plugins_hadoop_download.changed and jmeter_plugins_hadoop_enabled
   when: jmeter_plugins_hadoop_enabled
   tags: jmeter_setup
@@ -136,7 +164,8 @@
     owner="{{jmeter_owner}}"
     group="{{jmeter_group}}"
   sudo : yes
-#  when: jmeter_download.changed
+  when: jmeter_serveragent_enabled
+  #  when: jmeter_download.changed
   tags: jmeter_setup
 
 - name: jmeter | Download jmeter serveragent
@@ -148,20 +177,28 @@
   tags: jmeter_setup
 
 - name: jmeter | Extract archive jmeter serveragent
-  command: chdir={{ jmeter_serveragent_base_dir }}  /usr/bin/unzip -o -q {{ jmeter_dir_tmp }}/{{ jmeter_serveragent_archive }}
+  unarchive:
+    src="{{ jmeter_dir_tmp }}/{{ jmeter_serveragent_archive }}"
+    dest="{{ jmeter_serveragent_base_dir }}"
+    copy=no
+    owner="{{ jmeter_owner }}"
+    group="{{ jmeter_group }}"
+  sudo: yes
 #  when: jmeter_serveragent_download.changed and jmeter_serveragent_enabled
   when: jmeter_serveragent_enabled
   tags: jmeter_setup
-  
-- name: jmeter | Configure jmeter
-  template: src=jmeter.properties.j2 dest={{jmeter_configuration}}
-  register: jmeter_configure
-  
-- name: jmeter | Change ownership of jmeter installation
-  file: path={{jmeter_base_dir}}/{{ jmeter_name }}/ owner={{ jmeter_owner }} group={{ jmeter_group }} state=directory recurse=yes
 
-- name: jmeter | Change execution mode of jmeter bin installation
-  file: path={{jmeter_base_dir}}/{{ jmeter_name }}/bin/ owner={{ jmeter_owner }} group={{ jmeter_group }} state=directory recurse=yes mode=0755
+# with 3.0, jmeter.properties is the default coming with the package and overrides should be
+# written to user.properties.
+#- name: jmeter | Configure jmeter
+#  template:
+#    src=jmeter.properties.j2
+#    dest="{{jmeter_configuration}}"
+#    backup=yes
+#    group="{{ jmeter_group }}"
+#    owner="{{ jmeter_owner }}"
+#  sudo: yes
+#  register: jmeter_configure
   
 #- name: jmeter | Ensure Jmeter restarted
 #  service: name=jmeter state=restarted
