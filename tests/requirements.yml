@@ -1,4 +1,4 @@
-- src: https://github.com/AlbanAndrieu/ansible-java.git
+- src: https://github.com/AlbanAndrieu/ansible-java
   name: java
 #  path: tests/roles
-  scm: git
+#  scm: git
