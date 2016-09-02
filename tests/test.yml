@@ -27,5 +27,6 @@
         msg: "Jmeter Not Found, tests failed."
       when: jmeter_path.stdout != "/usr/local/jmeter/apache-jmeter-{{ jmeter_version }}/bin/jmeter"
 
-    - name: Display jmeter version
-      command: /usr/local/jmeter/apache-jmeter-{{ jmeter_version }}/bin/jmeter --version
+#TODO add java
+#    - name: Display jmeter version
+#      command: /usr/local/jmeter/apache-jmeter-{{ jmeter_version }}/bin/jmeter --version
