@@ -73,8 +73,8 @@
     copy=no
 #    owner="{{ jmeter_owner }}"
 #    group="{{ jmeter_group }}"
-#  when: jmeter_plugins_standard_download.changed and jmeter_plugins_standard_enabled
-  when: jmeter_plugins_standard_enabled
+  when: jmeter_plugins_standard_download.changed and jmeter_plugins_standard_enabled
+#  when: jmeter_plugins_standard_enabled
   tags: jmeter_setup
   become: true
 
@@ -94,8 +94,8 @@
     copy=no
 #    owner="{{ jmeter_owner }}"
 #    group="{{ jmeter_group }}"
-#  when: jmeter_plugins_extras_download.changed and jmeter_plugins_extras_enabled
-  when: jmeter_plugins_extras_enabled
+  when: jmeter_plugins_extras_download.changed and jmeter_plugins_extras_enabled
+#  when: jmeter_plugins_extras_enabled
   tags: jmeter_setup
   become: true
 
@@ -115,8 +115,8 @@
     copy=no
 #    owner="{{ jmeter_owner }}"
 #    group="{{ jmeter_group }}"
-#  when: jmeter_plugins_extraslibs_download.changed and jmeter_plugins_extraslibs_enabled
-  when: jmeter_plugins_extraslibs_enabled
+  when: jmeter_plugins_extraslibs_download.changed and jmeter_plugins_extraslibs_enabled
+#  when: jmeter_plugins_extraslibs_enabled
   tags: jmeter_setup
   become: true
 
@@ -136,8 +136,8 @@
     copy=no
 #    owner="{{ jmeter_owner }}"
 #    group="{{ jmeter_group }}"
-#  when: jmeter_plugins_webdriver_download.changed and jmeter_plugins_webdriver_enabled
-  when: jmeter_plugins_webdriver_enabled
+  when: jmeter_plugins_webdriver_download.changed and jmeter_plugins_webdriver_enabled
+#  when: jmeter_plugins_webdriver_enabled
   tags: jmeter_setup
   become: true
 
@@ -157,8 +157,8 @@
     copy=no
 #    owner="{{ jmeter_owner }}"
 #    group="{{ jmeter_group }}"
-#  when: jmeter_plugins_hadoop_download.changed and jmeter_plugins_hadoop_enabled
-  when: jmeter_plugins_hadoop_enabled
+  when: jmeter_plugins_hadoop_download.changed and jmeter_plugins_hadoop_enabled
+#  when: jmeter_plugins_hadoop_enabled
   tags: jmeter_setup
   become: true
 
@@ -189,8 +189,8 @@
     copy=no
 #    owner="{{ jmeter_owner }}"
 #    group="{{ jmeter_group }}"
-#  when: jmeter_serveragent_download.changed and jmeter_serveragent_enabled
-  when: jmeter_serveragent_enabled
+  when: jmeter_serveragent_download.changed and jmeter_serveragent_enabled
+#  when: jmeter_serveragent_enabled
   tags: jmeter_setup
   become: true
 
