@@ -1,6 +1,5 @@
 ---
 - hosts: all
-  sudo: true
 
   vars:
     jmeter_version: 3.0

@@ -18,7 +18,8 @@ jmeter_version: "3.0"
 
 jmeter_name: "apache-jmeter-{{ jmeter_version }}"
 jmeter_archive: "{{ jmeter_name }}.zip"
-jmeter_url: "http://mirrors.ircam.fr/pub/apache/jmeter/binaries/{{ jmeter_archive }}"
+#jmeter_url: "http://mirrors.ircam.fr/pub/apache/jmeter/binaries/{{ jmeter_archive }}"
+jmeter_url: "https://archive.apache.org/dist/jmeter/binaries/{{ jmeter_archive }}"
 
 jmeter_plugins_version: "1.3.1"
 
