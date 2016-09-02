@@ -27,8 +27,8 @@
   file:
     dest="{{ jmeter_base_dir }}"
     state=directory
-    owner="{{ jmeter_owner }}"
-    group="{{ jmeter_group }}"
+#    owner="{{ jmeter_owner }}"
+#    group="{{ jmeter_group }}"
   tags: jmeter_setup
   become: true
 
@@ -38,8 +38,8 @@
     dest="{{ jmeter_base_dir }}"
     creates="{{ jmeter_base_dir }}/{{ jmeter_name }}"
     copy=no
-    owner="{{ jmeter_owner }}"
-    group="{{ jmeter_group }}"
+#    owner="{{ jmeter_owner }}"
+#    group="{{ jmeter_group }}"
   tags: jmeter_setup
   become: true
 
@@ -66,8 +66,8 @@
     src="{{ jmeter_dir_tmp }}/{{ jmeter_plugins_standard_archive }}"
     dest="{{ jmeter_base_dir }}/{{ jmeter_name }}"
     copy=no
-    owner="{{ jmeter_owner }}"
-    group="{{ jmeter_group }}"
+#    owner="{{ jmeter_owner }}"
+#    group="{{ jmeter_group }}"
 #  when: jmeter_plugins_standard_download.changed and jmeter_plugins_standard_enabled
   when: jmeter_plugins_standard_enabled
   tags: jmeter_setup
@@ -87,8 +87,8 @@
     src="{{ jmeter_dir_tmp }}/{{ jmeter_plugins_extras_archive }}"
     dest="{{ jmeter_base_dir }}/{{ jmeter_name }}"
     copy=no
-    owner="{{ jmeter_owner }}"
-    group="{{ jmeter_group }}"
+#    owner="{{ jmeter_owner }}"
+#    group="{{ jmeter_group }}"
 #  when: jmeter_plugins_extras_download.changed and jmeter_plugins_extras_enabled
   when: jmeter_plugins_extras_enabled
   tags: jmeter_setup
@@ -108,8 +108,8 @@
     src="{{ jmeter_dir_tmp }}/{{ jmeter_plugins_extraslibs_archive }}"
     dest="{{ jmeter_base_dir }}/{{ jmeter_name }}"
     copy=no
-    owner="{{ jmeter_owner }}"
-    group="{{ jmeter_group }}"
+#    owner="{{ jmeter_owner }}"
+#    group="{{ jmeter_group }}"
 #  when: jmeter_plugins_extraslibs_download.changed and jmeter_plugins_extraslibs_enabled
   when: jmeter_plugins_extraslibs_enabled
   tags: jmeter_setup
@@ -129,8 +129,8 @@
     src="{{ jmeter_dir_tmp }}/{{ jmeter_plugins_webdriver_archive }}"
     dest="{{ jmeter_base_dir }}/{{ jmeter_name }}"
     copy=no
-    owner="{{ jmeter_owner }}"
-    group="{{ jmeter_group }}"
+#    owner="{{ jmeter_owner }}"
+#    group="{{ jmeter_group }}"
 #  when: jmeter_plugins_webdriver_download.changed and jmeter_plugins_webdriver_enabled
   when: jmeter_plugins_webdriver_enabled
   tags: jmeter_setup
@@ -150,8 +150,8 @@
     src="{{ jmeter_dir_tmp }}/{{ jmeter_plugins_hadoop_archive }}"
     dest="{{ jmeter_base_dir }}/{{ jmeter_name }}"
     copy=no
-    owner="{{ jmeter_owner }}"
-    group="{{ jmeter_group }}"
+#    owner="{{ jmeter_owner }}"
+#    group="{{ jmeter_group }}"
 #  when: jmeter_plugins_hadoop_download.changed and jmeter_plugins_hadoop_enabled
   when: jmeter_plugins_hadoop_enabled
   tags: jmeter_setup
@@ -162,8 +162,8 @@
   file:
     dest="{{jmeter_serveragent_base_dir}}"
     state=directory
-    owner="{{jmeter_owner}}"
-    group="{{jmeter_group}}"
+#    owner="{{jmeter_owner}}"
+#    group="{{jmeter_group}}"
   when: jmeter_serveragent_enabled
   #  when: jmeter_download.changed
   tags: jmeter_setup
@@ -182,8 +182,8 @@
     src="{{ jmeter_dir_tmp }}/{{ jmeter_serveragent_archive }}"
     dest="{{ jmeter_serveragent_base_dir }}"
     copy=no
-    owner="{{ jmeter_owner }}"
-    group="{{ jmeter_group }}"
+#    owner="{{ jmeter_owner }}"
+#    group="{{ jmeter_group }}"
 #  when: jmeter_serveragent_download.changed and jmeter_serveragent_enabled
   when: jmeter_serveragent_enabled
   tags: jmeter_setup

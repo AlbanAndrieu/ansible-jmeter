@@ -1,0 +1,23 @@
+
+ansigenome_info:
+  galaxy_id: '1997'
+  galaxy_user: 'alban.andrieu'
+  galaxy_name: 'jmeter'
+
+  travis: True
+
+  authors:
+    - name:  'Alban Andrieu'
+      url: 'fr.linkedin.com/in/nabla/'
+      email: 'alban.andrieu@free.fr'
+      twitter: 'AlbanAndrieu'
+      github: 'AlbanAndrieu'
+
+  synopsis: |
+    Ensures that jmeter is properly installed and configured
+
+  usage: |
+    Describe how to use in more detail...
+
+  #custom: |
+  #  Any custom output you want after the usage section..
