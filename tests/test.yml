@@ -1,0 +1,22 @@
+---
+- hosts: all
+
+  roles:
+    - role_under_test
+
+#  vars:
+#      todo_enabled: no
+
+  tasks:
+    - name: Check jmeter
+      command: which jmeter
+      register: jmeter_path
+
+    - debug:
+        msg: "Jmeter was installed in {{jmeter_path.stdout}}"
+
+    - fail:
+        msg: "Jmeter Not Found, tests failed."
+      when: jmeter_path.stdout != "/usr/bin/jmeter"
+
+    - command -v jmeter || exit 1
