@@ -1,5 +1,5 @@
-#- src: https://github.com/AlbanAndrieu/ansible-java
-- src: AlbanAndrieu.java
+- src: https://github.com/AlbanAndrieu/ansible-java
+#- src: AlbanAndrieu.java
   name: java
   branch: master
 #  path: tests/roles
