@@ -52,7 +52,7 @@ script:
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy search nabla --version'
   #- 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy setup --list'
   #- 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install AlbanAndrieu.java'
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm git clone https://github.com/AlbanAndrieu/ansible-java.git /etc/ansible/roles/java'
+  #- 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm git clone https://github.com/AlbanAndrieu/ansible-java.git /etc/ansible/roles/java'
   #- 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-galaxy install -r /etc/ansible/roles/role_under_test/tests/requirements.yml'
 
   # Ansible syntax check.
@@ -73,8 +73,9 @@ script:
   # Ensure jmeter is installed and at the right version.
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm which /usr/local/jmeter/apache-jmeter-$JMETER_VERSION/bin/jmeter'
 
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm /usr/local/jmeter/apache-jmeter-$JMETER_VERSION/bin/jmeter --version'
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm /usr/local/jmeter/apache-jmeter-$JMETER_VERSION/bin/jmeter --version | grep -qF "$JMETER_VERSION"'
+#  #Below need java
+#  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm /usr/local/jmeter/apache-jmeter-$JMETER_VERSION/bin/jmeter --version'
+#  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm /usr/local/jmeter/apache-jmeter-$JMETER_VERSION/bin/jmeter --version | grep -qF "$JMETER_VERSION"'
 
   # Clean up
   - 'sudo docker stop "$(cat ${container_id})"'
