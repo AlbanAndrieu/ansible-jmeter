@@ -7,7 +7,12 @@ dependencies:
 #   java_oracle_version: 8u66
 #   java_oracle_distribution: jdk
 #   name: java
- - { role: java,
+# - { role: AlbanAndrieu.java,
+#     java_oracle_version: 8u66,
+#     java_oracle_distribution: jdk,
+#   }
+ - { role: AlbanAndrieu.java,
+     name: java,
      java_oracle_version: 8u66,
      java_oracle_distribution: jdk,
    }
