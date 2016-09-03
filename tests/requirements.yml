@@ -1,6 +1,8 @@
+---
+- src: https://github.com/silpion/ansible-util
 #- src: https://github.com/AlbanAndrieu/ansible-java
-- src: AlbanAndrieu.java
+#- src: AlbanAndrieu.java
   name: java
-  branch: master
+#  branch: master
 #  path: tests/roles
-  scm: git
+#  scm: git

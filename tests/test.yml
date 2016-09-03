@@ -3,6 +3,8 @@
 
   vars:
     jmeter_version: 3.0
+    java_oracle_version: 8u66
+    java_oracle_distribution: jdk
 
   pre_tasks:
     - name: Ensure build dependencies are installed (RedHat).
