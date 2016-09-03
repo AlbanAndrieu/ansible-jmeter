@@ -1,9 +1,9 @@
 ---
 #dependencies: []
 dependencies:
-  - src: https://github.com/AlbanAndrieu/ansible-java
-#  - src: AlbanAndrieu.java
-    name: java
+#  - src: https://github.com/AlbanAndrieu/ansible-java
+  - src: AlbanAndrieu.java
+#    name: java
 #
 #    vars:
 #      java_oracle_version: 8u66,
