@@ -12,21 +12,21 @@ env:
     run_opts: "--privileged"
     playbook: test.yml
     JMETER_VERSION: 3.0
-  - distro: ubuntu1604
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
-    playbook: test.yml
-    JMETER_VERSION: 3.0
+#  - distro: ubuntu1604
+#    init: /lib/systemd/systemd
+#    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+#    playbook: test.yml
+#    JMETER_VERSION: 3.0
   - distro: ubuntu1404
     init: /sbin/init
     run_opts: "--privileged"
     playbook: test.yml
     JMETER_VERSION: 3.0
-  - distro: ubuntu1204
-    init: /sbin/init
-    run_opts: "--privileged"
-    playbook: test.yml
-    JMETER_VERSION: 3.0
+#  - distro: ubuntu1204
+#    init: /sbin/init
+#    run_opts: "--privileged"
+#    playbook: test.yml
+#    JMETER_VERSION: 3.0
   - distro: debian8
     init: /lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
