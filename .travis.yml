@@ -3,47 +3,61 @@ sudo: required
 
 env:
   - distro: centos7
+    distribution: centos
+    version: 7
     init: /usr/lib/systemd/systemd
     run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
     playbook: test.yml
     JMETER_VERSION: 3.0
   - distro: centos6
+    distribution: centos
+    version: 6
     init: /sbin/init
     run_opts: "--privileged"
     playbook: test.yml
     JMETER_VERSION: 3.0
 #  - distro: ubuntu1604
+#    distribution: ubuntu
+#    version: 16.04
 #    init: /lib/systemd/systemd
 #    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
 #    playbook: test.yml
 #    JMETER_VERSION: 3.0
   - distro: ubuntu1404
+    distribution: ubuntu
+    version: 14.04
     init: /sbin/init
     run_opts: "--privileged"
     playbook: test.yml
     JMETER_VERSION: 3.0
-#  - distro: ubuntu1204
-#    init: /sbin/init
-#    run_opts: "--privileged"
-#    playbook: test.yml
-#    JMETER_VERSION: 3.0
-  - distro: debian8
-    init: /lib/systemd/systemd
-    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+  - distro: ubuntu1204
+    distribution: ubuntu
+    version: 12.04
+    init: /sbin/init
+    run_opts: "--privileged"
     playbook: test.yml
     JMETER_VERSION: 3.0
+#  - distro: debian8
+#    distribution: debian
+#    version: 8
+#    init: /lib/systemd/systemd
+#    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
+#    playbook: test.yml
+#    JMETER_VERSION: 3.0
 
 services:
   - docker
 
 before_install:
   # Pull container.
-  - 'sudo docker pull geerlingguy/docker-${distro}-ansible:latest'
+  - 'sudo docker build --rm=true --file=tests/Dockerfile.${distribution}-${version} --tag=${distribution}-${version}:ansible tests'
+  #- 'sudo docker pull geerlingguy/docker-${distro}-ansible:latest'
 
 script:
   - container_id=$(mktemp)
   # Run container in detached state.
-  - 'sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} geerlingguy/docker-${distro}-ansible:latest "${init}" > "${container_id}"'
+  - 'sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} ${distribution}-${version}:ansible "${init}" > "${container_id}"'
+  #- 'sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro ${run_opts} geerlingguy/docker-${distro}-ansible:latest "${init}" > "${container_id}"'
 
   # Ansible version.
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible --version; git --version'
