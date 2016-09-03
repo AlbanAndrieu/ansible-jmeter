@@ -3,11 +3,14 @@
 dependencies:
 #  - src: AlbanAndrieu.java
 #    name: java
- - src: AlbanAndrieu.java
-#   when: ansible_os_family == 'Ubuntu'
-   java_oracle_version: 8u66
-   java_oracle_distribution: jdk
-   name: java
+# - src: AlbanAndrieu.java
+#   java_oracle_version: 8u66
+#   java_oracle_distribution: jdk
+#   name: java
+ - { role: java,
+     java_oracle_version: 8u66,
+     java_oracle_distribution: jdk,
+   }
 
 galaxy_info:
   author: Alban Andrieu
