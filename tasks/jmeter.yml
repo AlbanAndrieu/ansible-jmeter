@@ -13,7 +13,7 @@
   shell: mktemp -d
   register: tempdir
   tags: jmeter_setup
-  changed_when: False
+  changed_when: false
 
 #jmeter standard
 - name: jmeter | Download jmeter
