@@ -30,12 +30,12 @@
 #    owner="{{ jmeter_owner }}"
 #    group="{{ jmeter_group }}"
   tags: jmeter_setup
-  become: true
+  become: yes
 
 - name: jmeter | Install unzip
   action: "{{ ansible_pkg_mgr}} name=unzip state=present"
   tags: jmeter_setup
-  become: true
+  become: yes
 
 - name: jmeter | Extract archive jmeter
   unarchive:
@@ -46,7 +46,7 @@
 #    owner="{{ jmeter_owner }}"
 #    group="{{ jmeter_group }}"
   tags: jmeter_setup
-  become: true
+  become: yes
 
 #- name: jmeter | Create home directory
 #  file:
@@ -76,7 +76,7 @@
   when: jmeter_plugins_standard_download.changed and jmeter_plugins_standard_enabled
 #  when: jmeter_plugins_standard_enabled
   tags: jmeter_setup
-  become: true
+  become: yes
 
 #jmeter plugins extras
 - name: jmeter | Download jmeter plugins extras
@@ -97,7 +97,7 @@
   when: jmeter_plugins_extras_download.changed and jmeter_plugins_extras_enabled
 #  when: jmeter_plugins_extras_enabled
   tags: jmeter_setup
-  become: true
+  become: yes
 
 #jmeter plugins extraslibs
 - name: jmeter | Download jmeter plugins extraslibs
@@ -118,7 +118,7 @@
   when: jmeter_plugins_extraslibs_download.changed and jmeter_plugins_extraslibs_enabled
 #  when: jmeter_plugins_extraslibs_enabled
   tags: jmeter_setup
-  become: true
+  become: yes
 
 #jmeter plugins webdriver
 - name: jmeter | Download jmeter plugins webdriver
@@ -139,7 +139,7 @@
   when: jmeter_plugins_webdriver_download.changed and jmeter_plugins_webdriver_enabled
 #  when: jmeter_plugins_webdriver_enabled
   tags: jmeter_setup
-  become: true
+  become: yes
 
 #jmeter plugins hadoop
 - name: jmeter | Download jmeter plugins hadoop
@@ -160,7 +160,7 @@
   when: jmeter_plugins_hadoop_download.changed and jmeter_plugins_hadoop_enabled
 #  when: jmeter_plugins_hadoop_enabled
   tags: jmeter_setup
-  become: true
+  become: yes
 
 #jmeter serveragent
 - name: jmeter | Create base directory for serveragent
@@ -172,7 +172,7 @@
   when: jmeter_serveragent_enabled
   #  when: jmeter_download.changed
   tags: jmeter_setup
-  become: true
+  become: yes
 
 - name: jmeter | Download jmeter serveragent
   get_url:
@@ -192,7 +192,7 @@
   when: jmeter_serveragent_download.changed and jmeter_serveragent_enabled
 #  when: jmeter_serveragent_enabled
   tags: jmeter_setup
-  become: true
+  become: yes
 
 # with 3.0, jmeter.properties is the default coming with the package and overrides should be
 # written to user.properties.
@@ -212,8 +212,10 @@
 
 - name: jmeter | Cleanup temporary directory
   file: name={{ tempdir.stdout }} state=absent
-  changed_when: false
   tags: jmeter_setup
-
+  changed_when: false    
+  ignore_errors: "{{ ansible_check_mode }}"    
+  become: yes
+  
 - debug: msg=" jmeter | Start jmeter agent {{jmeter_serveragent_base_dir}}/startAgent.sh"
 - debug: msg=" jmeter | Start jmeter {{jmeter_base_dir}}/{{ jmeter_name }}/bin/jmeter"
