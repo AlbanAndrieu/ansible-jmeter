@@ -30,13 +30,13 @@ env:
     run_opts: "--privileged"
     playbook: test.yml
     JMETER_VERSION: 3.0
-  - distro: ubuntu1604
-    distribution: ubuntu
-    version: 16.04
-    init: /sbin/init
-    run_opts: "--privileged"
-    playbook: test.yml
-    JMETER_VERSION: 3.0
+#  - distro: ubuntu1604
+#    distribution: ubuntu
+#    version: 16.04
+#    init: /sbin/init
+#    run_opts: "--privileged"
+#    playbook: test.yml
+#    JMETER_VERSION: 3.0
 #  - distro: debian8
 #    distribution: debian
 #    version: 8
