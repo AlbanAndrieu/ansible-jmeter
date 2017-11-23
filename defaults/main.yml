@@ -12,7 +12,8 @@ jmeter_base_dir: "/usr/local/jmeter"
 #jmeter_home_dir: "{{ home }}/.jmeter"
 jmeter_configuration: "{{ jmeter_base_dir }}/{{ jmeter_name }}/bin/jmeter.properties"
 
-jmeter_dir_tmp: "/tmp" # or override with "{{ tempdir.stdout }} in order to have be sure to download the file"
+#jmeter_dir_tmp: "/tmp" # or override with "{{ tempdir.stdout }} in order to have be sure to download the file"
+jmeter_dir_tmp: "{{ tempdir.stdout }}"
 
 jmeter_version: "3.0"
 
