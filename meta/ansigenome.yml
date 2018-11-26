@@ -1,13 +1,15 @@
-
+---
 ansigenome_info:
   galaxy_id: '1997'
+  galaxy_url: 'https://galaxy.ansible.com/alban.andrieu/jmeter/'
   galaxy_user: 'alban.andrieu'
   galaxy_name: 'jmeter'
+  galaxy_docker_name: 'ansible-jmeter'
 
-  travis: True
+  travis: true
 
   authors:
-    - name:  'Alban Andrieu'
+    - name: 'Alban Andrieu'
       url: 'fr.linkedin.com/in/nabla/'
       email: 'alban.andrieu@free.fr'
       twitter: 'AlbanAndrieu'
@@ -19,5 +21,5 @@ ansigenome_info:
   usage: |
     Describe how to use in more detail...
 
-  #custom: |
-  #  Any custom output you want after the usage section..
+  # custom: |
+  #   Any custom output you want after the usage section..

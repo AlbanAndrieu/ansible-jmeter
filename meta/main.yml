@@ -1,34 +1,34 @@
 ---
 dependencies: []
-#dependencies:
-##Work for ansible galaxy
-#  - src: AlbanAndrieu.java
-##Work for travis
-##  - src: https://github.com/AlbanAndrieu/ansible-java
-##    name: java
-##
-##    vars:
-##      java_oracle_version: 8u66,
-##      java_oracle_distribution: jdk,
 
 galaxy_info:
   author: Alban Andrieu
   description: A role for installing jmeter
   company: Nabla
   license: GPLv3
-  min_ansible_version: 2.3.1.0
+  min_ansible_version: 2.6.0
   platforms:
-  - name: EL
-    versions:
-    - 6
-  - name: Fedora
-    versions:
-    - 20
-  - name: Ubuntu
-    versions:
-    - trusty
-  - name: Debian
-    versions:
-    - wheezy
+    - name: EL
+      versions:
+        - 6
+    - name: Fedora
+      versions:
+        - 20
+    - name: Ubuntu
+      versions:
+        - all
+        - lucid
+        - maverick
+        - natty
+        - oneiric
+        - precise
+        - quantal
+        - raring
+        - saucy
+        - trusty        
+    - name: Debian
+      versions:
+        - all
+        - wheezy
   galaxy_tags:
     - development
